@@ -1,0 +1,19 @@
+.menu{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-weight: 300;
+    background-color: transparent;
+    padding: 10px;
+    padding-top: 0px;
+}
+
+.account_image{
+    border-radius: 100%;
+    cursor: pointer;
+}
+.user_dropdown{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

@@ -1,0 +1,35 @@
+// ProfilePage.scss
+.profile_container {
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar_section {
+  margin-bottom: 20px;
+  margin-top: 20px;
+
+  .ant-avatar {
+    background-color: red;
+  }
+
+  .ant-btn {
+    margin: 0 5px;
+  }
+}
+
+.profile_form {
+  .ant-form-item {
+    margin-bottom: 15px;
+  }
+}
+.saveBtn{
+    background-color: #B8860B;
+}
+
+.saveBtn:hover{
+    background-color: #b99539;
+}

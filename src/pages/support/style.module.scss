@@ -1,0 +1,17 @@
+.right{
+    border-left: .5px solid #c8c8c8;
+    padding: 20px;
+}
+
+
+.messages_content{
+    height: calc(100vh - 270px);
+}
+
+
+.send_btn{
+    background-color: #B8860B;
+}
+.send_btn:hover{
+    background-color: #cc960d !important;
+}

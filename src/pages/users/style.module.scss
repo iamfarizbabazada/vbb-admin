@@ -1,0 +1,10 @@
+.users{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    .user_content{
+        display: flex;
+        align-items: center;
+    }
+}
