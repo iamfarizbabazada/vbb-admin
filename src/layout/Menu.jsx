@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Users from "../components/icons/users";
-import Notification from "../components/icons/notification";
-import Support from "../components/icons/support";
+import Users from "../components/icons/Users";
+import Notification from "../components/icons/Notification";
+import Support from "../components/icons/Support";
 import { Button, Flex, Menu } from "antd";
 import Logo from '../components/icons/Logo';
 import style from './style.module.scss';
