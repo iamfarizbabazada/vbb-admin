@@ -28,7 +28,7 @@ const Register = () => {
 
   return (
     <Row className={style.register}>
-      <Col span={12} className={style.register_image}>
+      <Col span={16} className={style.register_image}>
         <Image
           width={"100%"}
           height={"100%"}
@@ -36,7 +36,7 @@ const Register = () => {
           preview={false}
         />
       </Col>
-      <Col span={12} className={style.form_container}>
+      <Col span={8} className={style.form_container}>
         <div style={{ width: "100%" }}>
           <Image src="/registerLogo.png" preview={false} />
           <Typography.Title>Xoş gəlmisiniz! 👋</Typography.Title>
@@ -66,7 +66,7 @@ const Register = () => {
               type="primary"
               htmlType="submit"
             >
-              Submit
+              Daxil ol
             </Button>
           </Form.Item>
         </Form>

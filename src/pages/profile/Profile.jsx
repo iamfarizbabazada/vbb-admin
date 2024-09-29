@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Upload, Avatar, message } from 'antd';
 import { UserOutlined, UploadOutlined, DeleteOutlined } from '@ant-design/icons';
 import style from  './style.module.scss';
+import axiosInstance from '../../api/axiosInstace';
 
 const Profile = () => {
   const [form] = Form.useForm();
   const [avatar, setAvatar] = useState(null);
+
+  const getProfile = async() => {
+    const response = await axiosInstance.get('/api/profile')
+    console.log('response', response);
+  }
 
   const handleAvatarChange = info => {
     if (info.file.status === 'done') {
@@ -24,6 +30,11 @@ const Profile = () => {
     console.log('Profil Bilgileri:', values);
     message.success('Profil bilgileri başarıyla güncellendi!');
   };
+
+
+  useEffect(() => {
+    getProfile()
+  }, [])
 
   return (
     <div className={style.profile_container}>
