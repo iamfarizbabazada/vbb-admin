@@ -4,7 +4,9 @@ import Edit from "../../components/icons/Edit";
 import axiosInstance from "../../api/axiosInstace";
 import Detail from "./Detail";
 
-const index = () => {
+
+
+const Index = () => {
   const [tableView, setTableView] = useState();
   const [selectedStatus, setSelectedStatus] = useState();
   const [uuid, setUuid] = useState();
@@ -113,4 +115,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

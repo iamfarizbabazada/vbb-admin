@@ -1,10 +1,9 @@
-import { Col, Row, Image, Form, Input, Button, Checkbox } from "antd";
+import { Col, Typography, Row, Image, Form, Input, Button, Checkbox } from "antd";
 import React, { useState } from "react";
 import style from "./style.module.scss";
-import Typography from "antd/es/typography/Typography";
 import axiosInstance from "../../api/axiosInstace";
-import OtpModal from "./otpModal/OtpModal";
 import { useNavigate } from "react-router-dom";
+
 
 const Register = () => {
   const navigate = useNavigate();

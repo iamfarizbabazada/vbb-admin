@@ -100,16 +100,9 @@ const Profile = () => {
     <div className={style.profile_container}>
       <h2>Profil Tənzimləmələri</h2>
       <div className={style.avatar_section}>
-        <Avatar
-          size={100}
-          icon={<UserOutlined />}
-          src={avatar} // Eğer avatar URL'i varsa burada gösterilir
-        />
-        <Upload
-          onChange={handleAvatarChange}
-          showUploadList={false}
-        >
-          <Button icon={<UploadOutlined />}>Avatar Seç</Button>
+        {/* <Avatar size={100} icon={<UserOutlined />} src={avatar} /> */}
+        <Upload onChange={handleAvatarChange} showUploadList={false}>
+          <Button icon={<UploadOutlined />}></Button>
         </Upload>
         {avatar && (
           <Button onClick={handleAvatarRemove} icon={<DeleteOutlined />} danger>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Header } from "antd/es/layout/layout";
 import { Col, Image, Popover, Row } from "antd";
 import style from "./style.module.scss";
@@ -16,18 +16,16 @@ const HeaderComp = () => {
 
   const activePage = window.location.pathname.split("/")[1];
 
-  const translateSlug = (slug) => {
-    return translationMap[slug] || slug;
-  };
-
-  const activePageTranslated = translateSlug(activePage);
+  const activePageTranslated = useMemo(() => {
+    return translationMap[activePage] || activePage;
+  },[activePage])
 
   const handleLogout = async() => {
     try {
         await axiosInstance.post('/api/auth/logout')
         navigate('/')
     } catch (error) {
-        
+        console.error(error)
     }
   }
 
