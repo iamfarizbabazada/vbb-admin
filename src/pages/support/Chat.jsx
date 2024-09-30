@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Input, Button, List, notification, Row, Col, Typography } from "antd";
 import socket from "./Socket";
 import style from "./style.module.scss";
+import { SendOutlined } from "@ant-design/icons";
+import TextArea from "antd/es/input/TextArea";
 
 const Chat = ({ userId, receiverId, users }) => {
   const [message, setMessage] = useState("");
@@ -81,9 +83,10 @@ const Chat = ({ userId, receiverId, users }) => {
         <Col span={20}>
           <Input
             value={message}
+            size="large"
             onChange={(e) => setMessage(e.target.value)}
             onPressEnter={sendMessage}
-            placeholder="Yazın..."
+            placeholder="Yazmağa başlayın.."
           />
         </Col>
         <Col span={4}>
@@ -91,8 +94,9 @@ const Chat = ({ userId, receiverId, users }) => {
             type="primary"
             className={style.send_btn}
             onClick={sendMessage}
+            icon={<SendOutlined style={{fontSize: '26px'}} />}
           >
-            Göndər
+            
           </Button>
         </Col>
       </Row>
