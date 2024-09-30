@@ -10,7 +10,7 @@ const socket = io(baseUrl, {
   reconnectionAttempts: Infinity,
   autoConnect: true,
   agent: false,
-  upgrade: false,
+  upgrade: true,
   rejectUnauthorized: false,
 });
 

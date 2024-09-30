@@ -1,4 +1,4 @@
-import { Select, Table } from "antd";
+import { Badge, Select, Table, Tag } from "antd";
 import React, { useEffect, useState } from "react";
 import Edit from "../../components/icons/Edit";
 import axiosInstance from "../../api/axiosInstace";
@@ -8,29 +8,28 @@ import Detail from "./Detail";
 
 const Index = () => {
   const [tableView, setTableView] = useState();
-  const [selectedStatus, setSelectedStatus] = useState()
-  const [uuid, setUuid] = useState()
+  const [selectedStatus, setSelectedStatus] = useState();
+  const [uuid, setUuid] = useState();
 
-  const [openModal, setOpenModal] = useState(false)
-
+  const [openModal, setOpenModal] = useState(false);
 
   const getOrders = async (status) => {
     const response = await axiosInstance.get("api/orders", {
-        params: { status: status || undefined },
-      });
+      params: { status: status  },
+    });
 
     setTableView(response.data.orders);
   };
-  
+
   const handleStatusChange = (value) => {
     setSelectedStatus(value);
-    getOrders(value); 
-  }
+    getOrders(value);
+  };
 
   const handleOrderDetail = (obj) => {
-    setUuid(obj.id)
-    setOpenModal(true)
-  }
+    setUuid(obj.id);
+    setOpenModal(true);
+  };
 
   const columns = [
     {
@@ -43,6 +42,7 @@ const Index = () => {
       title: "Məbləğ",
       dataIndex: "amount",
       key: "price",
+      render: (text, obj) => <div>{text} ₼</div>,
     },
     {
       title: "Ödəniş üsulu",
@@ -58,6 +58,15 @@ const Index = () => {
       title: "Statusu",
       dataIndex: "status",
       key: "status",
+      render: (text, obj) => {
+        return obj.status === "PENDING" ? (
+          <Tag color={"yellow"}>GÖZLƏYİR</Tag>
+        ) : obj.status === "COMPLETED" ? (
+          <Tag color={"green"}>TƏSDİQLƏNDİ</Tag>
+        ) : obj.status === "REJECTED" ? (
+          <Tag color={"red"}>LƏĞV EDİLDİ</Tag>
+        ) : '';
+      },
     },
     {
       title: "Ətraflı",
@@ -80,7 +89,7 @@ const Index = () => {
       <Select
         placeholder="Status seçin"
         onChange={handleStatusChange}
-        style={{marginBottom: '10px'}}
+        style={{ marginBottom: "10px", width: "200px" }}
         filterOption={(input, option) =>
           (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
         }

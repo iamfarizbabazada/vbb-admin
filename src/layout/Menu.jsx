@@ -24,17 +24,17 @@ const MenuComp = () => {
   const items = [
     {
       key: "/users",
-      icon: <Users color={location.pathname === "/users" ? '#C3C2C1' : '#B8860B'} />,
+      icon: <Users color={location.pathname === "/users" ? '#B8860B' : '#C3C2C1'} />,
       label: "İstifadəçilər",
     },
     {
       key: "/orders",
-      icon: <Notification color={location.pathname === "/orders" ? '#C3C2C1' : '#B8860B'} />,
+      icon: <Notification color={location.pathname === "/orders" ? '#B8860B' : '#C3C2C1'} />,
       label: "Sifarişlər",
     },
     {
       key: "/live_support",
-      icon: <Support color={location.pathname === "/live_support" ? '#C3C2C1' : '#B8860B'} />,
+      icon: <Support color={location.pathname === "/live_support" ? '#B8860B' : '#C3C2C1'} />,
       label: "Canlı Dəstək",
     },
   ];

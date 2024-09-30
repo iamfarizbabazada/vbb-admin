@@ -1,17 +1,60 @@
-.right{
-    border-left: .5px solid #c8c8c8;
-    padding: 20px;
+.right {
+  border-left: 0.5px solid #c8c8c8;
+  padding: 20px;
+}
+.users {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .user {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .message_sender {
+    text-align: right; // Gönderen mesajlar sağda
+  }
+
+  .message_receiver {
+    text-align: left; // Alıcı mesajlar solda
+  }
+
+  .user:hover {
+    background-color: #cc960d;
+    color: white;
+  }
+
+  .selectedUser {
+    background-color: #b8860b;
+
+    .user_name {
+      color: white;
+    }
+  }
 }
 
-
-.messages_content{
-    height: calc(100vh - 270px);
+.chat_footer {
+  display: flex;
 }
 
-
-.send_btn{
-    background-color: #B8860B;
+.messages_content {
+  height: calc(100vh - 270px);
+  overflow: scroll;
 }
-.send_btn:hover{
-    background-color: #cc960d !important;
+
+.send_btn {
+  background-color: #b8860b;
+  height: 38px;
+  width: 80px !important;
+}
+.send_btn:hover {
+  background-color: #cc960d !important;
 }

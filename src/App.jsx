@@ -35,8 +35,7 @@ const LayoutWrapper = () => {
         {!isAuthPage && (
           <Footer className="footer">
             <Row>
-              <Col span={12}>© 2024, Vipblackbets</Col>
-              <Col span={12}>Created by BCA</Col>
+              <Col>© 2024, Vipblackbets</Col>
             </Row>
           </Footer>
         )}

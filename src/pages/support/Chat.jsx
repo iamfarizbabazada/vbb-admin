@@ -1,69 +1,104 @@
-// src/Chat.js
 import React, { useEffect, useState } from "react";
-import { Input, Button, List, notification, Row } from "antd";
+import { Input, Button, List, notification, Row, Col, Typography } from "antd";
 import socket from "./Socket";
 import style from "./style.module.scss";
+import { SendOutlined } from "@ant-design/icons";
+import TextArea from "antd/es/input/TextArea";
 
-const Chat = ({ userId, receiverId }) => {
+const Chat = ({ userId, receiverId, users }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
+  const getUserNameById = (id) => {
+    const user = users.find((user) => user.id === id);
+    return user ? user.name : "Admin"; 
+  };
+
   useEffect(() => {
     socket.emit("join room", receiverId);
-  
-    const handleMessages = (history) => {
-      setMessages(history);
-    };
-  
-    const handleNewMessage = (newMessage) => {
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
-    };
-  
-    socket.on("messages", handleMessages);
-    socket.on("chat new", handleNewMessage);
-  
+
+    socket.on("chat new", (newMessage) => {
+      setMessages((previousMessages) => [...previousMessages, newMessage]);
+    });
+
+    socket.on("messages", (chatMessages) => {
+      const formattedMessages = chatMessages.map((msg) => {
+        console.log("Received Message:", msg); 
+        return {
+          _id: msg._id,
+          text: msg.text,
+          createdAt: msg.createdAt,
+          isReaded: msg.read,
+          user: {
+            _id: msg.sender,
+            name: getUserNameById(msg.sender), 
+          },
+        };
+      });
+      setMessages(formattedMessages);
+    });
+
+    socket.emit("chat history");
+
     return () => {
-      socket.off("messages", handleMessages); // Dinleyiciyi kaldır
-      socket.off("chat new", handleNewMessage); // Dinleyiciyi kaldır
       socket.emit("leave room");
+      socket.off();
     };
-  }, [receiverId]);
-  
+  }, [receiverId, users]);
 
   const sendMessage = () => {
     if (message.trim()) {
       socket.emit("chat message", message);
-      setMessage("");
+      const newMessage = {
+        _id: Math.random().toString(36).substring(7), 
+        text: message,
+        createdAt: new Date(),
+        user: {
+          _id: userId, 
+          name: getUserNameById(userId), 
+        },
+      };
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      setMessage(""); 
     } else {
       notification.error({
-        message: "Message cannot be empty or receiver not selected",
+        message: "Mesaj boş olamaz.",
       });
     }
   };
 
   return (
-    <div>
-      <h2>Chat with {receiverId}</h2>
+    <div className={style.chat_container}>
+      <Typography.Title level={4}>{getUserNameById(receiverId)}</Typography.Title>
       <List
         className={style.messages_content}
         dataSource={messages}
         renderItem={(msg) => (
           <List.Item key={msg._id}>
-            {" "}
-            <strong>{msg.sender.name}: </strong> {msg.text}{" "}
+            <strong>{msg?.user?.name}: </strong> {msg.text}{" "}
           </List.Item>
         )}
       />
-      <Row className={style.chart_footer}>
-        <Input
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onPressEnter={sendMessage}
-          placeholder="Type a message"
-        />
-        <Button type="primary" className={style.send_btn} onClick={sendMessage}>
-          Göndər
-        </Button>
+      <Row className={style.chat_footer} gutter={12}>
+        <Col span={20}>
+          <Input
+            value={message}
+            size="large"
+            onChange={(e) => setMessage(e.target.value)}
+            onPressEnter={sendMessage}
+            placeholder="Yazmağa başlayın.."
+          />
+        </Col>
+        <Col span={4}>
+          <Button
+            type="primary"
+            className={style.send_btn}
+            onClick={sendMessage}
+            icon={<SendOutlined style={{fontSize: '26px'}} />}
+          >
+            
+          </Button>
+        </Col>
       </Row>
     </div>
   );
