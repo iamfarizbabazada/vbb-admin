@@ -45,6 +45,7 @@ const Index = () => {
           </Card>
         ))}
       </Row>
+      <img src={users[0].avatarURL} width="100px" height="100px" />
     </div>
   );
 };
