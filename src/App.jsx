@@ -21,7 +21,7 @@ const LayoutWrapper = () => {
           collapsible
           onCollapse={(value) => setCollapsed(value)}
           collapsed={collapsed}
-          // trigger={null}
+          trigger={null}
           className="sider"
         >
           <Menu />

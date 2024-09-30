@@ -1,16 +1,6 @@
-// import { Col, Row, Image, Form, Input, Button, Checkbox } from "antd";
-import Col from 'antd/es/col'
-import Row from 'antd/es/row'
-import Image from 'antd/es/image'
-import Form from 'antd/es/form'
-import Input from 'antd/es/input'
-import Button from 'antd/es/button'
-import Checkbox from 'antd/es/checkbox'
-
-
+import { Col, Typography, Row, Image, Form, Input, Button, Checkbox } from "antd";
 import React, { useState } from "react";
 import style from "./style.module.scss";
-// import Typography from "antd/es/typography/Typography";
 import axiosInstance from "../../api/axiosInstace";
 import { useNavigate } from "react-router-dom";
 
@@ -48,8 +38,8 @@ const Register = () => {
       <Col span={12} className={style.form_container}>
         <div style={{ width: "100%" }}>
           <Image src="/registerLogo.png" preview={false} />
-          <a>Xoş gəlmisiniz! 👋</a>
-          <span>Hesabınıza daxil olun və macəraya başlayın</span>
+          <Typography.Title>Xoş gəlmisiniz! 👋</Typography.Title>
+          <Typography>Hesabınıza daxil olun və macəraya başlayın</Typography>
         </div>
         <Form
           name="basic"
