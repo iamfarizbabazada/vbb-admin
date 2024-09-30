@@ -9,7 +9,7 @@ const Index = () => {
 
   const getUsersList = async () => {
     const response = await axiosInstance.get("api/users");
-    setUsers(response.data.orders);
+    setUsers(response.data.users);
   };
 
   useEffect(() => {
