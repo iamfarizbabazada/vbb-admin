@@ -37,7 +37,7 @@ const OtpModal = ({ isModalVisible, handleOk, handleCancel, email }) => {
       title="OTP Doğrulama"
       visible={isModalVisible}
       onCancel={handleCancel}
-      footer={null}
+      // footer={null}
     >
       <Row justify="center">
         <Col span={24}>

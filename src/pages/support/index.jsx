@@ -5,7 +5,7 @@ import { Content, Header } from "antd/es/layout/layout";
 import Chat from "./Chat";
 import style from "./style.module.scss";
 
-const index = () => {
+const Index = () => {
   const [users, setUsers] = useState([]);
 
   const getContacts = async () => {
@@ -48,4 +48,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 import style from "./style.module.scss";
 import axiosInstance from "../../api/axiosInstace";
 
-const index = () => {
+const Index = () => {
   const [users, setUsers] = useState([]);
 
   const getUsersList = async () => {
@@ -49,4 +49,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

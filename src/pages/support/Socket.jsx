@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-const baseUrl = "https://vipblackbets.ozzo.az";
+const baseUrl = "wss://vipblackbets.ozzo.az";
 
 const socket = io(baseUrl, {
   transports: ["websocket", "polling"],

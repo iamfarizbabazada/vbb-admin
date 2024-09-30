@@ -29,7 +29,7 @@ const Profile = () => {
     <div className={style.profile_container}>
       <h2>Profil Tənzimləmələri</h2>
       <div className={style.avatar_section}>
-        <Avatar size={100} icon={<UserOutlined />} src={avatar} />
+        {/* <Avatar size={100} icon={<UserOutlined />} src={avatar} /> */}
         <Upload onChange={handleAvatarChange} showUploadList={false}>
           <Button icon={<UploadOutlined />}></Button>
         </Upload>
