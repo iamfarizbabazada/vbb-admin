@@ -5,14 +5,16 @@ import React, { useState } from "react";
 import "./App.css";
 import Menu from "./layout/Menu";
 import AppRouter from "./router/Router";
-import { BrowserRouter, useLocation } from "react-router-dom"; 
+import { BrowserRouter, useLocation } from "react-router-dom";
 import Header from "./layout/Header";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 const LayoutWrapper = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
 
-  const isAuthPage = location.pathname === "/"; 
+  const isAuthPage = location.pathname === "/";
 
   return (
     <Layout>
@@ -46,9 +48,11 @@ const LayoutWrapper = () => {
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <LayoutWrapper />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <LayoutWrapper />
+      </BrowserRouter>
+    </Provider>
   );
 };
 

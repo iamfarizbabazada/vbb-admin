@@ -10,6 +10,8 @@ const Index = () => {
   const [users, setUsers] = useState([]);
   const [receiverId, setReceiverId] = useState(null);
 
+  const [userData, setUserData] = useState()
+
   console.log("users", users);
 
   // Kullanıcıları API'den almak
@@ -27,8 +29,10 @@ const Index = () => {
   };
 
   // Alıcı ID'sini ayarlama
-  const handleReceiverId = (id) => {
-    setReceiverId(id);
+  const handleReceiverId = (user) => {
+    setReceiverId(user.id);
+    setUserData(user)
+
   };
 
   useEffect(() => {
@@ -38,7 +42,9 @@ const Index = () => {
   return (
     <Layout>
       <Row>
-        <Col span={6} className={style.left}>
+        <Col span={3}>
+        </Col>
+        <Col span={5} className={style.left}>
           <Typography.Title level={5}>Mesajlar</Typography.Title>
 
           <List
@@ -48,7 +54,7 @@ const Index = () => {
             renderItem={(user) => (
               <List.Item
                 key={user.id}
-                onClick={() => handleReceiverId(user.id)}
+                onClick={() => handleReceiverId(user)}
                 className={`${style.user} ${receiverId === user.id ? style.selectedUser : ''}`} 
                 style={{ cursor: "pointer" }} // Tıklanabilir görünüm için
               >
@@ -67,10 +73,12 @@ const Index = () => {
             )}
           />
         </Col>
-        <Col span={18} className={style.right}>
+        <Col span={14} className={style.right}>
           <Content>
-            <Chat receiverId={receiverId} users={users} />
+            <Chat userData={userData} receiverId={receiverId} userId={receiverId} users={users} />
           </Content>
+        </Col>
+        <Col span={2}>
         </Col>
       </Row>
     </Layout>

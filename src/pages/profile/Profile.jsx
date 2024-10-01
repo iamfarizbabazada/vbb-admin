@@ -6,8 +6,8 @@ import axiosInstance from '../../api/axiosInstace';
 
 const Profile = () => {
   const [form] = Form.useForm();
-  const [avatar, setAvatar] = useState(null); // Avatar URL'sini saklar
-  const [selectedFile, setSelectedFile] = useState(null); // Seçilen dosya
+  const [avatar, setAvatar] = useState(null); 
+  const [selectedFile, setSelectedFile] = useState(null); 
 
   console.log('avatar', avatar);
 
@@ -17,6 +17,8 @@ const Profile = () => {
       const response = await axiosInstance.get('/api/profile');
       const profileData = response.data;
 
+      console.log('profiledtata', profileData);
+
       form.setFieldsValue({
         firstName: profileData.name,
         email: profileData.email,
@@ -24,7 +26,7 @@ const Profile = () => {
       });
 
       if (profileData.avatarURL) {
-        setAvatar(profileData.avatarURL); // Avatar URL'sini kaydet
+        setAvatar(profileData.avatarURL); 
       }
 
     } catch (error) {
@@ -45,7 +47,7 @@ const Profile = () => {
     try {
       const response = await axiosInstance.patch('/api/profile/upload/avatar', formData, {
         headers: {
-          'Content-Type': 'multipart/form-data', // FormData kullanıldığı için bu header gerekli
+          'Content-Type': 'multipart/form-data', 
         },
       });
       message.success('Avatar başarıyla güncellendi!');
@@ -56,10 +58,8 @@ const Profile = () => {
 
   const handleAvatarChange = async (info) => {
     if (info.file.status !== 'uploading') {
-      // Dosyanın seçildiğini kontrol ederiz
      
   
-      // Seçilen dosyayı API'ye gönder
       const formData = new FormData();
       formData.append('avatar', info.file.originFileObj);
   
@@ -73,9 +73,9 @@ const Profile = () => {
         const fileUrl = URL.createObjectURL(info.file.originFileObj);
         setAvatar(fileUrl);
         console.log('fileUrl,', fileUrl);
-        message.success('Avatar başarıyla yüklendi!');
+        message.success('Profil şəkili Yükləndi');
       } catch (error) {
-        message.error('Avatar yüklenirken bir hata oluştu.');
+        message.error('Profil şəkili yüklənərkən xəta baş verdi');
       }
     }
   };
@@ -83,13 +83,13 @@ const Profile = () => {
   const handleAvatarRemove = () => {
     setAvatar(null);
     setSelectedFile(null);
-    message.info('Avatar silindi.');
+    message.info('Profil şəkili silindi.');
   };
 
   const onFinish = values => {
     console.log('Profil Bilgileri:', values);
-    patchAvatar(); // Avatar'ı kaydet
-    message.success('Profil bilgileri başarıyla güncellendi!');
+    patchAvatar(); 
+    message.success('Profil Məlumatları uöurla yeniləndi');
   };
 
   useEffect(() => {
@@ -98,15 +98,14 @@ const Profile = () => {
 
   return (
     <div className={style.profile_container}>
-      <h2>Profil Tənzimləmələri</h2>
+      <h2>Hesab Məlumatları</h2>
       <div className={style.avatar_section}>
-        {/* <Avatar size={100} icon={<UserOutlined />} src={avatar} /> */}
+        <Avatar size={100} icon={<UserOutlined />} src={avatar} style={{borderRadius: '10px'}}/>
         <Upload onChange={handleAvatarChange} showUploadList={false}>
           <Button icon={<UploadOutlined />}></Button>
         </Upload>
         {avatar && (
           <Button onClick={handleAvatarRemove} icon={<DeleteOutlined />} danger>
-            Avatarı Sil
           </Button>
         )}
       </div>
