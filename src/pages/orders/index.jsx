@@ -31,6 +31,7 @@ const Index = () => {
     setOpenModal(true);
   };
 
+
   const columns = [
     {
       title: "Sifarişçi",
@@ -68,16 +69,6 @@ const Index = () => {
         ) : '';
       },
     },
-    {
-      title: "Ətraflı",
-      dataIndex: "detail",
-      key: "detail",
-      render: (text, obj) => (
-        <a onClick={() => handleOrderDetail(obj)}>
-          <Edit />
-        </a>
-      ),
-    },
   ];
 
   useEffect(() => {
@@ -108,7 +99,11 @@ const Index = () => {
           },
         ]}
       />
-      <Table columns={columns} dataSource={tableView} />
+      <Table columns={columns} dataSource={tableView} onRow={(record) => {
+          return {
+            onClick: () => handleOrderDetail(record), 
+          };
+        }}/>
 
       <Detail uuid={uuid} open={openModal} setOpen={setOpenModal} />
     </>

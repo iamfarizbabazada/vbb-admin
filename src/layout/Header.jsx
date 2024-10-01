@@ -4,14 +4,18 @@ import { Col, Image, Popover, Row } from "antd";
 import style from "./style.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosInstace";
+import { useSelector } from "react-redux";
 
 const HeaderComp = () => {
   const navigate = useNavigate();
+
+  const user = useSelector((state) => state.auth.user)
 
   const translationMap = {
     users: "İstifadəçilər",
     orders: "Sifarişlər",
     live_support: "Canlı Dəstək",
+    profile: "Hesabım",
   };
 
   const activePage = window.location.pathname.split("/")[1];
@@ -20,19 +24,28 @@ const HeaderComp = () => {
     return translationMap[activePage] || activePage;
   },[activePage])
 
-  const handleLogout = async() => {
-    try {
-        await axiosInstance.post('/api/auth/logout')
-        navigate('/')
-    } catch (error) {
-        console.error(error)
-    }
+const handleLogout = async () => {
+  try {
+    await axiosInstance.post('/api/auth/logout');
+
+    localStorage.removeItem('user');
+
+    document.cookie.split(';').forEach((cookie) => {
+      const cookieName = cookie.split('=')[0].trim();
+      document.cookie = `${cookieName}=; Max-Age=0; path=/;`;
+    });
+
+    navigate('/');
+  } catch (error) {
+    console.error("Logout Error:", error);
   }
+};
+
 
   const content = (
     <div className={style.user_dropdown}>
-      <Link to='/profile'>Tənzimləmələr</Link>
-      <Link onClick={handleLogout}>Log out</Link>
+      <Link to='/profile'>Hesabım</Link>
+      <Link onClick={handleLogout}>Çıxış et</Link>
     </div>
   );
 
@@ -45,7 +58,7 @@ const HeaderComp = () => {
         <Col span={12} className="account">
           <Popover placement="leftBottom" content={content}>
             <Image
-              src="/image.jpeg"
+              src={user?.avatarURL}
               width={38}
               height={38}
               className={style.account_image}

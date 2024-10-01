@@ -21,23 +21,24 @@ const MenuComp = () => {
     console.log(e);
   };
 
-  const items = [
-    {
-      key: "/users",
-      icon: <Users color={location.pathname === "/users" ? '#B8860B' : '#C3C2C1'} />,
-      label: "İstifadəçilər",
-    },
-    {
-      key: "/orders",
-      icon: <Notification color={location.pathname === "/orders" ? '#B8860B' : '#C3C2C1'} />,
-      label: "Sifarişlər",
-    },
-    {
-      key: "/live_support",
-      icon: <Support color={location.pathname === "/live_support" ? '#B8860B' : '#C3C2C1'} />,
-      label: "Canlı Dəstək",
-    },
-  ];
+ const items = [
+  {
+    key: "/users",
+    icon: <Users color={location.pathname === "/users" ? '#B8860B' : '#0000008a'} />,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/users" ? "#B8860B" : "#0000008a" }}>İstifadəçilər</span>,
+  },
+  {
+    key: "/orders",
+    icon: <Notification color={location.pathname === "/orders" ? '#B8860B' : '#0000008a'} />,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/orders" ? "#B8860B" : "#0000008a" }}>Sifarişlər</span>,
+  },
+  {
+    key: "/live_support",
+    icon: <Support color={location.pathname === "/live_support" ? '#B8860B' : '#0000008a'} />,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/live_support" ? "#B8860B" : "#0000008a" }}>Canlı Dəstək</span>,
+  },
+];
+
 
   return (
     <div>
