@@ -30,13 +30,38 @@ const Index = () => {
   const getUsersList = async () => {
     const response = await axiosInstance.get("api/users");
     setUsers(response.data.users);
+    setCount(response.data.total);
+  };
 
+  const deleteUser = async (id) => {
+    {
+      try {
+        const response = await axiosInstance.delete(`/api/users/${id}`);
+
+        window.location.reload();
+      } catch (error) {}
+    }
+  };
+
+  const handleOk = async () => {
+    if (userId) {
+      deleteUser(userId);
+    }
+  };
+
+  const handleDeleteModal = (id) => {
+    setUserId(id);
+    setIsModalOpen(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
     getUsersList();
   }, []);
-
+  
   return (
     <div>
       <Row className={style.count_section}>
