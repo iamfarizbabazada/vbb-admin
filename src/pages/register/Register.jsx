@@ -12,7 +12,9 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.auth.user); 
+  const user = localStorage.getItem('user'); 
+
+  console.log('login user', user);
 
   useEffect(() => {
     if (user) {

@@ -6,6 +6,7 @@ import Support from "../components/icons/Support";
 import { Button, Flex, Menu } from "antd";
 import Logo from '../components/icons/Logo';
 import style from './style.module.scss';
+import { ProfileOutlined } from "@ant-design/icons";
 
 const MenuComp = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -31,6 +32,11 @@ const MenuComp = () => {
     key: "/orders",
     icon: <Notification color={location.pathname === "/orders" ? '#B8860B' : '#0000008a'} />,
     label: <span style={{marginLeft: '10px', color: location.pathname === "/orders" ? "#B8860B" : "#0000008a" }}>Sifarişlər</span>,
+  },
+  {
+    key: "/admins",
+    icon: <ProfileOutlined  style={location.pathname === "/admins" ? {color: '#B8860B', fontSize: '20px'} : {color: '#0000008a',fontSize: '20px'} } />,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/admins" ? "#B8860B" : "#0000008a" }}>Adminlər</span>,
   },
   {
     key: "/live_support",

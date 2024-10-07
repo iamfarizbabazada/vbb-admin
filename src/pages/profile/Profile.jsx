@@ -101,6 +101,7 @@ const Profile = () => {
       <h2>Hesab Məlumatları</h2>
       <div className={style.avatar_section}>
         <Avatar size={100} icon={<UserOutlined />} src={avatar} style={{borderRadius: '10px'}}/>
+        
         <Upload onChange={handleAvatarChange} showUploadList={false}>
           <Button icon={<UploadOutlined />}></Button>
         </Upload>
@@ -113,7 +114,6 @@ const Profile = () => {
         <Form.Item
           label="Ad"
           name="firstName"
-          rules={[{ required: true, message: 'Buranı doldurun!' }]}
         >
           <Input placeholder="Adınızı girin" />
         </Form.Item>
@@ -121,10 +121,6 @@ const Profile = () => {
         <Form.Item
           label="Email"
           name="email"
-          rules={[
-            { required: true, message: 'Buranı doldurun!' },
-            { type: 'email', message: 'Uyğun email formatı deyil!' },
-          ]}
         >
           <Input placeholder="Email adresinizi girin" />
         </Form.Item>
@@ -132,7 +128,6 @@ const Profile = () => {
         <Form.Item
           label="Şifrə"
           name="password"
-          rules={[{ required: true, message: 'Buranı doldurun!' }]}
         >
           <Input.Password placeholder="Şifrenizi girin" />
         </Form.Item>

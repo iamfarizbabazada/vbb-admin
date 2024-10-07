@@ -10,3 +10,21 @@
 .ant-pagination-item-active a{
     color: #B8860B !important;
 }
+
+
+.ant-btn-variant-solid{
+    background-color: #B8860B;
+}
+.ant-btn-variant-solid:hover{
+    background-color: #b99539 !important;
+}
+
+.ant-btn-variant-outlined:hover{
+    border-color: #b99539 !important;
+    color: #B8860B  !important;
+}
+
+.ant-btn-default{
+    background-color: #B8860B;
+    color: white;
+}

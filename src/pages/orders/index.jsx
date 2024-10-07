@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Edit from "../../components/icons/Edit";
 import axiosInstance from "../../api/axiosInstace";
 import Detail from "./Detail";
+import Head from "../../components/commonds/Head";
 
 
 
@@ -10,6 +11,7 @@ const Index = () => {
   const [tableView, setTableView] = useState();
   const [selectedStatus, setSelectedStatus] = useState();
   const [uuid, setUuid] = useState();
+  const [count, setCount] = useState()
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -17,9 +19,10 @@ const Index = () => {
     const response = await axiosInstance.get("api/orders", {
       params: { status: status  },
     });
-
     setTableView(response.data.orders);
+    setCount(response.data.total);
   };
+
 
   const handleStatusChange = (value) => {
     setSelectedStatus(value);
@@ -77,35 +80,14 @@ const Index = () => {
 
   return (
     <>
-      <Select
-        placeholder="Status seçin"
-        onChange={handleStatusChange}
-        style={{ marginBottom: "10px", width: "200px" }}
-        filterOption={(input, option) =>
-          (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-        }
-        options={[
-          {
-            value: "PENDING",
-            label: "PENDING",
-          },
-          {
-            value: "COMPLETED",
-            label: "COMPLETED",
-          },
-          {
-            value: "REJECTED",
-            label: "REJECTED",
-          },
-        ]}
-      />
+      <Head title={'Sifarişlərin'} count={count} select handleStatusChange={handleStatusChange}/>
       <Table columns={columns} dataSource={tableView} onRow={(record) => {
           return {
             onClick: () => handleOrderDetail(record), 
           };
         }}/>
 
-      <Detail uuid={uuid} open={openModal} setOpen={setOpenModal} />
+      <Detail uuid={uuid} open={openModal}  setOpen={setOpenModal}/>
     </>
   );
 };

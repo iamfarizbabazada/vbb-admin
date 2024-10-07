@@ -1,0 +1,44 @@
+.user_content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .truncate {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+  }
+
+  .user_img {
+    border-radius: 7px;
+  }
+
+  h2 {
+    color: #b8860b;
+  }
+
+  p {
+    font-size: 12px;
+    color: gray;
+  }
+}
+
+.user_edit {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+// Head
+
+.head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  
+    margin-bottom: 24px;
+  }
+  

@@ -3,13 +3,11 @@ import axiosInstance from "../../api/axiosInstace";
 import { Modal, Select } from "antd";
 
 const Detail = ({ uuid, open, setOpen }) => {
-    const [order, setOrder] = useState()
-
-
+  const [order, setOrder] = useState();
   const getOrder = async () => {
     const response = await axiosInstance.get(`/api/orders/${uuid}`);
     console.log("response", response.data);
-    setOrder(response.data)
+    setOrder(response.data);
   };
 
   const handleOk = () => {
@@ -20,12 +18,12 @@ const Detail = ({ uuid, open, setOpen }) => {
   };
 
   const afterOpenChange = () => {
-    getOrder()
-  }
+    getOrder();
+  };
 
-  const patchStatus = async(value) => {
+  const patchStatus = async (value) => {
     // const response = await axiosInstance.patch('/api/')
-  }
+  };
 
   const handleStatusChange = (value) => {
     setSelectedStatus(value);
@@ -35,7 +33,6 @@ const Detail = ({ uuid, open, setOpen }) => {
   const [loading, setLoading] = React.useState(true);
 
   const showLoading = () => {
-    setOpen(true);
     setLoading(true);
 
     setTimeout(() => {
@@ -44,8 +41,8 @@ const Detail = ({ uuid, open, setOpen }) => {
   };
 
   useEffect(() => {
-    showLoading()
-  }, [])
+    showLoading();
+  }, []);
 
   return (
     <Modal
@@ -54,30 +51,18 @@ const Detail = ({ uuid, open, setOpen }) => {
       okText="Təsdiqlə"
       loading={loading}
       cancelText="Bağla"
-      onOk={handleOk} onCancel={handleCancel}
+      onOk={handleOk}
+      onCancel={handleCancel}
       afterOpenChange={afterOpenChange}
     >
+      <h1>Sifarişçi: {order?.user.name}</h1>
+      <p>Email: {order?.user.email}</p>
 
-     <h1>
-        Sifarişçi: {order?.user.name}
-     </h1>
-     <p>
-        Email: {order?.user.email}
-     </p>
-   
-     <p>
-        Ödəniş Növü: {order?.paymentType}
-     </p>
-     <p>
-        Provider: {order?.provider}
-     </p>
-     <p>
-        Statusu: {order?.status}
-     </p>
-     <p>
-        Məbləğ: {order?.amount} ₼
-     </p>
-     <Select
+      <p>Ödəniş Növü: {order?.paymentType}</p>
+      <p>Provider: {order?.provider}</p>
+      <p>Statusu: {order?.status}</p>
+      <p>Məbləğ: {order?.amount} ₼</p>
+      <Select
         placeholder="Status seçin"
         onChange={handleStatusChange}
         style={{ marginBottom: "10px", width: "200px" }}
