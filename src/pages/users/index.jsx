@@ -9,6 +9,7 @@ import {
   Popconfirm,
   Popover,
   Row,
+  Table,
   Tooltip,
   Typography,
 } from "antd";
@@ -23,12 +24,15 @@ import axiosInstance from "../../api/axiosInstace";
 import Search from "antd/es/input/Search";
 import UiCard from "../../components/commonds/UiCard";
 import Head from "../../components/commonds/Head";
+import Detail from "./Detail";
 
 const Index = () => {
   const [users, setUsers] = useState([]);
   const [count, setCount] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userId, setUserId] = useState();
+  const [uuid, setUuid] = useState();
+  const [openModal, setOpenModal] = useState(false);
   const [search, setSearch] = useState();
   const params = {};
 
@@ -62,15 +66,89 @@ const Index = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = async () => {
-    if (userId) {
-      deleteUser(userId);
-    }
+  const handleUserDetail = (obj) => {
+    setUuid(obj.id);
+    setOpenModal(true);
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+
+  const columns = [
+    {
+      title: "№",
+      dataIndex: ["user", "name"],
+      key: "name",
+      render: (text, obj, index) => <a>{users.length - index}</a>,
+    },
+    {
+      title: "Tarix",
+      dataIndex: ["createdAt"],
+      key: "createdAt",
+      render: (createdAt) => {
+        const date = new Date(createdAt);
+        const formattedDate = date.toLocaleDateString("az-Latn-AZ", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+        const formattedTime = date.toLocaleTimeString("az-Latn-AZ", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        return `${formattedDate} - ${formattedTime}`;
+      },
+    },
+    {
+      title: "Ad Soyad",
+      dataIndex: ["name"],
+      key: "name",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Günün Bonusu",
+      dataIndex: ["bonus"],
+      key: "name",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Cari Balans",
+      dataIndex: "amount",
+      key: "price",
+      render: (text, obj) => <div>{text} ₼</div>,
+    },
+    {
+      title: "Bütün Depozitlər",
+      dataIndex: "paymentType",
+      key: "payment",
+    },
+    {
+      title: "Bütün Çıxarışlar",
+      dataIndex: "provider",
+      key: "provayder",
+      render: (text, obj) => <div className="text-[#b8860b]">{text}</div>,
+    },
+    {
+      title: "Çıxarış Qalıqları Cəmi",
+      dataIndex: "provider",
+      key: "provayder",
+      render: (text, obj) => <div className="text-[#b8860b]">{text}</div>,
+    },
+    // {
+    //   title: "Statusu",
+    //   dataIndex: "status",
+    //   key: "status",
+    //   render: (text, obj) => {
+    //     return obj.status === "PENDING" ? (
+    //       <Tag color={"yellow"}>GÖZLƏYİR</Tag>
+    //     ) : obj.status === "COMPLETED" ? (
+    //       <Tag color={"green"}>TƏSDİQLƏNDİ</Tag>
+    //     ) : obj.status === "REJECTED" ? (
+    //       <Tag color={"red"}>LƏĞV EDİLDİ</Tag>
+    //     ) : (
+    //       ""
+    //     );
+    //   },
+    // },
+  ];
 
   useEffect(() => {
     getUsersList();
@@ -78,23 +156,30 @@ const Index = () => {
 
   return (
     <div>
-      <Head title={'İstifadəçilərin'} count={count} handleSearch={handleSearch} search/>
-      <Row className={style.users} gutter={12}>
-        {users?.map((user) => (
+      <Head
+        title={"İstifadəçilərin"}
+        count={count}
+        handleSearch={handleSearch}
+        search
+      />
+
+        <Table
+          size="medium"
+          columns={columns}
+          dataSource={users}
+          onRow={(record) => {
+            return {
+              onClick: () => handleUserDetail(record),
+            };
+          }}
+        />
+
+        {/* {users?.map((user) => (
           <Col span={6}>
             <UiCard  user={user} handleDeleteModal={handleDeleteModal} />
           </Col>
-        ))}
-      </Row>
-
-      <Modal
-        title="İstifadəçini silməkdən əminmisiniz?"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        okText="Bəli"
-        cancelText="Xeyir"
-      ></Modal>
+        ))} */}
+      <Detail uuid={uuid} open={openModal}  setOpen={setOpenModal}/>
     </div>
   );
 };

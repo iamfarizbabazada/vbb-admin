@@ -24,15 +24,21 @@ const MenuComp = () => {
 
  const items = [
   {
+    key: "/orders",
+    icon: <Notification color={location.pathname === "/orders" ? '#B8860B' : '#0000008a'} />,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/orders" ? "#B8860B" : "#0000008a" }}>Depozitlər</span>,
+  },
+  {
+    key: "/extracts",
+    icon: <Notification color={location.pathname === "/extracts" ? '#B8860B' : '#0000008a'} />,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/extracts" ? "#B8860B" : "#0000008a" }}>Çıxarışlar</span>,
+  },
+  {
     key: "/users",
     icon: <Users color={location.pathname === "/users" ? '#B8860B' : '#0000008a'} />,
     label: <span style={{marginLeft: '10px', color: location.pathname === "/users" ? "#B8860B" : "#0000008a" }}>İstifadəçilər</span>,
   },
-  {
-    key: "/orders",
-    icon: <Notification color={location.pathname === "/orders" ? '#B8860B' : '#0000008a'} />,
-    label: <span style={{marginLeft: '10px', color: location.pathname === "/orders" ? "#B8860B" : "#0000008a" }}>Sifarişlər</span>,
-  },
+  
   {
     key: "/admins",
     icon: <ProfileOutlined  style={location.pathname === "/admins" ? {color: '#B8860B', fontSize: '20px'} : {color: '#0000008a',fontSize: '20px'} } />,

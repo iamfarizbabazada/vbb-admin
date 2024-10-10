@@ -18,6 +18,7 @@ const HeaderComp = () => {
     admins: "Adminlər",
     live_support: "Canlı Dəstək",
     profile: "Hesabım",
+    extracts: "Çıxarışlar",
   };
 
   const activePage = window.location.pathname.split("/")[1];

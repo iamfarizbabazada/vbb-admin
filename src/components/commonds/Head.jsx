@@ -9,11 +9,11 @@ const Head = ({ search, title, count, select, added, handleSearch, handleStatusC
   return (
     <Row className={style.head}>
       <Col span={12}>
-        <Typography level={2} style={{ margin: "0px" }}>
-          {title} sayı: <Badge count={count} showZero color="#B8860B" />
+        <Typography level={5} style={{ margin: "0px" }} className="font-medium text-base">
+          {title} <Badge  count={count} showZero color="#B8860B" />
         </Typography>
       </Col>
-      <Col span={11} className="flex justify-end items-end">
+      <Col span={11} className="flex justify-end items-center gap-5">
         {search && (
           <Search
             placeholder="Axtarış"
@@ -27,7 +27,8 @@ const Head = ({ search, title, count, select, added, handleSearch, handleStatusC
           <Select
             placeholder="Status seçin"
             onChange={handleStatusChange}
-            style={{ marginBottom: "10px", width: "200px" }}
+            style={{ width: "200px" }}
+            className={style.select}
             filterOption={(input, option) =>
               (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
             }

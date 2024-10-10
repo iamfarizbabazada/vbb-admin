@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 
+/* PAGINATION */
+
 .ant-pagination-item-active{
     border-color: #B8860B !important;
 }
@@ -11,6 +13,16 @@
     color: #B8860B !important;
 }
 
+.ant-pagination-prev{
+    background-color: white;
+}
+
+.ant-pagination-next{
+    background-color: white;
+}
+
+
+/* BUTTONS */
 
 .ant-btn-variant-solid{
     background-color: #B8860B;
@@ -26,5 +38,25 @@
 
 .ant-btn-default{
     background-color: #B8860B;
-    color: white;
+    /* color: white; */
+}
+
+
+.ant-input-group-addon button{
+    background-color: white !important;
+    border-top-right-radius: 2px !important;
+    border-bottom-right-radius: 2px !important;
+}
+
+
+/* SELECT */
+
+.ant-input{
+    border-radius: 2px !important;
+
+}
+
+.ant-select-selector{
+    border-radius: 2px !important;
+    text-align: center;
 }
