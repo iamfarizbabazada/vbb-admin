@@ -63,7 +63,7 @@ const HeaderComp = () => {
           {activePageTranslated}
         </Col>
         <Col span={12} className="account">
-          <Popover placement="leftBottom" content={content}>
+          <Popover placement="leftBottom" content={content} className="flex items-center gap-2 text-[#B8860B]">
             {user?.avatarURL ? (
               <Image
                 src={user?.avatarURL}
@@ -77,6 +77,7 @@ const HeaderComp = () => {
                 <UserOutlined />
               </Avatar>
             )}
+            <h4>{user?.name}</h4>
           </Popover>
         </Col>
       </Row>

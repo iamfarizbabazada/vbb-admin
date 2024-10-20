@@ -3,6 +3,7 @@ import axiosInstance from "../../api/axiosInstace";
 import {
   Button,
   Col,
+  ConfigProvider,
   Divider,
   Image,
   Input,
@@ -13,7 +14,7 @@ import {
   Typography,
 } from "antd";
 import style from "./style.module.scss";
-import { CalendarOutlined } from "@ant-design/icons";
+import { CalendarOutlined, TagsOutlined } from "@ant-design/icons";
 
 const Detail = ({ uuid, open, setOpen }) => {
   const [order, setOrder] = useState();
@@ -71,105 +72,120 @@ const Detail = ({ uuid, open, setOpen }) => {
   }, []);
 
   return (
-    <Modal
-      title="Sifariş Məlumatları"
-      open={open}
-      okText="Təsdiqlə"
-      loading={loading}
-      width={450}
-      cancelText="Bağla"
-      className={style.modal}
-      onOk={handleOk}
-      footer={
-        <Row>
-          <Col span={12}>
-            <Select
-            width="100%"
-              placeholder="Statusu dəyiş"
-              onChange={handleStatusChange}
-              style={{ marginBottom: "10px", width: "200px" }}
-              filterOption={(input, option) =>
-                (option?.label ?? "")
-                  .toLowerCase()
-                  .includes(input.toLowerCase())
-              }
-              options={[
-                {
-                  value: "PENDING",
-                  label: "PENDING",
-                },
-                {
-                  value: "COMPLETED",
-                  label: "COMPLETED",
-                },
-                {
-                  value: "REJECTED",
-                  label: "REJECTED",
-                },
-              ]}
-            />
-          </Col>
-          <Col span={12}>
-              <Button>
-                Təsdiqlə
-              </Button>
-          </Col>
-        </Row>
-      }
-      onCancel={handleCancel}
-      afterOpenChange={afterOpenChange}
+    <ConfigProvider
+      theme={{
+        components: {
+          Modal: {
+            contentBg: "#FFF",
+            headerBg: "#FFF",
+          },
+        },
+        token: {
+          padding: 16,
+        },
+      }}
     >
-      <Row className={style.user_info}>
-        <Image width={100} height={100} preview></Image>
-        <div className={style.right}>
-          <h2>{order?.user.name}</h2>
-          <p>{order?.user.email}</p>
-          <p>
-            <CalendarOutlined />
-            {formatDate(order?.createdAt)}
-          </p>
-          {order?.status === "PENDING" ? (
-            <Tag color={"yellow"}>GÖZLƏYİR</Tag>
-          ) : order?.status === "COMPLETED" ? (
-            <Tag color={"yellow"}>GÖZLƏYİR</Tag>
-          ) : order?.status === "REJECTED" ? (
-            <Tag color={"yellow"}>GÖZLƏYİR</Tag>
-          ) : (
-            ""
-          )}
+      <Modal
+        title="Depozit Məlumatları"
+        open={open}
+        okText="Təsdiqlə"
+        loading={loading}
+        width={450}
+        cancelText="Bağla"
+        className={style.modal}
+        onOk={handleOk}
+        footer={
+          <Row className={style.modal_footer} gutter={24}>
+            <Col span={12}>
+              <Select
+              ize="large"
+                width="100%"
+                height="100px"
+                placeholder="Statusu dəyiş"
+                onChange={handleStatusChange}
+                style={{ marginBottom: "10px", width: "100%", height: '40px' }}
+                filterOption={(input, option) =>
+                  (option?.label ?? "")
+                    .toLowerCase()
+                    .includes(input.toLowerCase())
+                }
+                options={[
+                  {
+                    value: "PENDING",
+                    label: "GÖZLƏYİR",
+                  },
+                  {
+                    value: "COMPLETED",
+                    label: "TƏSTİQLƏNDİ",
+                  },
+                  {
+                    value: "REJECTED",
+                    label: "LƏĞV EDİLDİ",
+                  },
+                ]}
+              />
+            </Col>
+            <Col span={12}>
+              <Button size="large" className={style.save_btn} color="default" variant="solid">Təsdiqlə</Button>
+            </Col>
+          </Row>
+        }
+        onCancel={handleCancel}
+        afterOpenChange={afterOpenChange}
+      >
+        <Row className={style.user_info}>
+          <Image width={120} height={120} preview></Image>
+          <div className={style.right}>
+            <p className={style.user_order_id}><TagsOutlined /> {order?.user?.id}</p>
+            <h2>{order?.user?.name}</h2>
+            <p>{order?.user?.email}</p>
+            <p>
+              <CalendarOutlined style={{marginRight: '5px'}}/>
+              {formatDate(order?.createdAt)}
+            </p>
+            {order?.status === "PENDING" ? (
+              <Tag color={"yellow"}>GÖZLƏYİR</Tag>
+            ) : order?.status === "COMPLETED" ? (
+              <Tag color={"yellow"}>TƏSTİQLƏNDİ</Tag>
+            ) : order?.status === "REJECTED" ? (
+              <Tag color={"yellow"}>LƏĞV EDİLDİ</Tag>
+            ) : (
+              ""
+            )}
+          </div>
+        </Row>
+        <div className={style.depozit_info}>
+          <Row className={style.boxs_top}>
+            <Col className={style.box_card}>
+              <h4>Provayder</h4>
+              <p>{order?.provider}</p>
+            </Col>
+            <Col className={style.box_card}>
+              <h4>Ödənİş növü</h4>
+              <p>{order?.paymentType}</p>
+            </Col>
+            <Col className={style.box_card}>
+              <h4>Depozİt</h4>
+              <p>{order?.amount} ₼</p>
+            </Col>
+          </Row>
+          <Row className={style.boxs_top}>
+            <Col className={`${style.box_card} ${style.bg_transparent_box}`}>
+              <h4>Bonus</h4>
+              <p>5%</p>
+            </Col>
+            <Col className={`${style.box_card} ${style.bg_transparent_box}`}>
+              <h4>KÖÇÜRÜLDÜ</h4>
+              <Input size="small" />
+            </Col>
+            <Col className={style.box_card}>
+              <h4>YEKUN</h4>
+              <p>{order?.amount} ₼</p>
+            </Col>
+          </Row>
         </div>
-      </Row>
-      <div className={style.depozit_info}>
-        <Row className={style.boxs_top}>
-          <Col className={style.box_card}>
-            <h4>Provayder</h4>
-            <p>{order?.provider}</p>
-          </Col>
-          <Col className={style.box_card}>
-            <h4>Ödəniş növü</h4>
-            <p>{order?.paymentType}</p>
-          </Col>
-          <Col className={style.box_card}>
-            <h4>Depozit</h4>
-            <p>{order?.amount} ₼</p>
-          </Col>
-        </Row>
-        <Row className={style.boxs_top}>
-          <Col className={style.box_card}>
-            <h4>Bonus</h4>
-            <p>5%</p>
-          </Col>
-          <Col className={style.box_card}>
-            <h4>KÖÇÜRÜLDÜ</h4>
-            <Input size="small" />
-          </Col>
-          <Col className={style.box_card}>
-            <h4>YEKUN</h4>
-            <p>{order?.amount} ₼</p>
-          </Col>
-        </Row>
-      </div>
-    </Modal>
+      </Modal>
+    </ConfigProvider>
   );
 };
 

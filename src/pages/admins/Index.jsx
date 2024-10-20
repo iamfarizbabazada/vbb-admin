@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Head from "../../components/commonds/Head";
 import axiosInstance from "../../api/axiosInstace";
 import style from "./style.module.scss";
+import Insert from "./Insert";
 
 const Index = () => {
   const [open, setOpen] = useState(false);
@@ -39,14 +40,7 @@ const Index = () => {
     } catch (error) {}
   };
 
-  const handleOk = () => {
-    onFinish();
-    setOpen(false);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-  };
+  
 
   useEffect(() => {
     getAdmins();
@@ -55,34 +49,14 @@ const Index = () => {
   return (
     <div>
       <Head
-        title="Adminlərin"
+        title="Adminlər"
         count={3}
         added
         handleNewModal={handleNewModal}
       />
       <Row className={style.admins} gutter={12}>
-        <Modal
-          title={<div>Məlumatları Yenilə</div>}
-          open={open}
-        >
-          <Form onFinish={onFinish}>
-            <Form.Item label="Ad Soyad" name="name">
-              <Input />
-            </Form.Item>
-            <Form.Item label="Email" name="email">
-              <Input />
-            </Form.Item>
-            <Form.Item label="Yeni şifrə təkrarı" name="newPassord">
-              <Input />
-            </Form.Item>
-            <Form.Item label="Yeni şifrə təkrarı" name="password">
-              <Input />
-            </Form.Item>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form>
-        </Modal>
+       
+         <Insert setOpen={setOpen} open={open}  />
       </Row>
     </div>
   );

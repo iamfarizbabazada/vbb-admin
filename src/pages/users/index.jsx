@@ -52,14 +52,7 @@ const Index = () => {
     setCount(response.data.total);
   };
 
-  const deleteUser = async (id) => {
-    {
-      try {
-        const response = await axiosInstance.delete(`/api/users/${id}`);
-        window.location.reload();
-      } catch (error) {}
-    }
-  };
+ 
 
   const handleDeleteModal = (id) => {
     setUserId(id);
@@ -107,7 +100,7 @@ const Index = () => {
       title: "Günün Bonusu",
       dataIndex: ["bonus"],
       key: "name",
-      render: (text) => <a>{text}</a>,
+      render: (text) => <a>{text} ₼</a>,
     },
     {
       title: "Cari Balans",
@@ -119,18 +112,19 @@ const Index = () => {
       title: "Bütün Depozitlər",
       dataIndex: "paymentType",
       key: "payment",
+      render: (text, obj) => <div >{text} ₼</div>,
     },
     {
       title: "Bütün Çıxarışlar",
       dataIndex: "provider",
       key: "provayder",
-      render: (text, obj) => <div className="text-[#b8860b]">{text}</div>,
+      render: (text, obj) => <div >{text} ₼</div>,
     },
     {
       title: "Çıxarış Qalıqları Cəmi",
       dataIndex: "provider",
       key: "provayder",
-      render: (text, obj) => <div className="text-[#b8860b]">{text}</div>,
+      render: (text, obj) => <div >{text} ₼</div>,
     },
     // {
     //   title: "Statusu",
@@ -157,7 +151,7 @@ const Index = () => {
   return (
     <div>
       <Head
-        title={"İstifadəçilərin"}
+        title={"İstifadəçilər"}
         count={count}
         handleSearch={handleSearch}
         search
@@ -174,11 +168,6 @@ const Index = () => {
           }}
         />
 
-        {/* {users?.map((user) => (
-          <Col span={6}>
-            <UiCard  user={user} handleDeleteModal={handleDeleteModal} />
-          </Col>
-        ))} */}
       <Detail uuid={uuid} open={openModal}  setOpen={setOpenModal}/>
     </div>
   );

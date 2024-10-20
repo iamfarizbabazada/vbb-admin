@@ -15,6 +15,12 @@ const Index = () => {
 
     const columns = [
         {
+            title: "№",
+            dataIndex: ["user", "name"],
+            key: "name",
+            render: (text, obj, index) => <a>{tableView.length - index}</a>,
+          },
+        {
           title: "Tarix",
           dataIndex: ["user", "name"],
           key: "name",

@@ -22,7 +22,7 @@ const Index = () => {
 
   const getOrders = async (status) => {
     const response = await axiosInstance.get("api/orders", {
-      params: { status: status, search: search  },
+      params: { status: status  },
     });
     setTableView(response.data.orders);
     setCount(response.data.total);
@@ -110,7 +110,7 @@ const Index = () => {
 
   return (
     <>
-      <Head title={'Sifarişlərin'} handleSearch={handleSearch} count={count} select search handleStatusChange={handleStatusChange}/>
+      <Head title={'Depozitlər'} handleSearch={handleSearch} count={count} select search handleStatusChange={handleStatusChange}/>
       <Table size="medium" columns={columns} dataSource={tableView} onRow={(record) => {
           return {
             onClick: () => handleOrderDetail(record), 

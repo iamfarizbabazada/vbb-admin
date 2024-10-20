@@ -7,6 +7,7 @@ import { Button, Flex, Menu } from "antd";
 import Logo from '../components/icons/Logo';
 import style from './style.module.scss';
 import { ProfileOutlined } from "@ant-design/icons";
+import Extracts from "../components/icons/Extracts";
 
 const MenuComp = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -30,7 +31,7 @@ const MenuComp = () => {
   },
   {
     key: "/extracts",
-    icon: <Notification color={location.pathname === "/extracts" ? '#B8860B' : '#0000008a'} />,
+    icon: <Extracts color={location.pathname === "/extracts" ? '#B8860B' : '#0000008a'} />,
     label: <span style={{marginLeft: '10px', color: location.pathname === "/extracts" ? "#B8860B" : "#0000008a" }}>Çıxarışlar</span>,
   },
   {

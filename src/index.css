@@ -24,23 +24,22 @@
 
 /* BUTTONS */
 
-.ant-btn-variant-solid{
-    background-color: #B8860B;
+/* .ant-btn-variant-solid{
+    background-color: #333;
 }
 .ant-btn-variant-solid:hover{
-    background-color: #b99539 !important;
+    background-color: #000 !important;
 }
 
 .ant-btn-variant-outlined:hover{
-    border-color: #b99539 !important;
-    color: #B8860B  !important;
+    border-color: #000 !important;
+    color: #000  !important;
 }
 
 .ant-btn-default{
-    background-color: #B8860B;
-    /* color: white; */
-}
-
+    background-color: #333;
+    color: white;
+} */
 
 .ant-input-group-addon button{
     background-color: white !important;
@@ -59,4 +58,16 @@
 .ant-select-selector{
     border-radius: 2px !important;
     text-align: center;
+}
+
+
+/* Modal */
+
+.ant-modal .ant-modal-content{
+    padding: 0px;
+    
+}
+
+.ant-modal-title{
+    padding: 16px 24px;
 }
