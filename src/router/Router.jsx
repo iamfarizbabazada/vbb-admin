@@ -8,6 +8,7 @@ import Register from "../pages/register/Register";
 import Profile from "../pages/profile/Profile";
 import Admins from "../pages/admins/Index";
 import Extracts from "../pages/extracts/Index";
+import Balance from '../pages/balance/Index'
 import ProtectedRoute from "../components/ProtectedRoute";
 
 const AppRouter = () => {
@@ -15,6 +16,7 @@ const AppRouter = () => {
     <Routes>
       <Route path="/login" element={<Register />} />
       <Route path="/users" element={<ProtectedRoute element={<Users />} />} />
+      <Route path="/balance" element={<ProtectedRoute element={<Balance />} />} />
       <Route path="/extracts" element={<ProtectedRoute element={<Extracts />} />} />
       <Route path="/orders" element={<ProtectedRoute element={<Orders />} />} />
       <Route path="/admins" element={<ProtectedRoute element={<Admins />} />} />

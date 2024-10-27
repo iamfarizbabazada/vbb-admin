@@ -21,7 +21,7 @@ const Index = () => {
   };
 
   const getOrders = async (status) => {
-    const response = await axiosInstance.get("api/orders/deposits", {
+    const response = await axiosInstance.get("api/orders/balances", {
       params: { status: status  },
     });
     setTableView(response.data.orders);
@@ -51,6 +51,7 @@ const Index = () => {
       title: "Tarix",
       dataIndex: "createdAt",
       key: "createdAt",
+      width: 200,
       render: (createdAt) => {
         const date = new Date(createdAt);
         const formattedDate = date.toLocaleDateString("az-Latn-AZ", {
@@ -82,12 +83,7 @@ const Index = () => {
       dataIndex: "paymentType",
       key: "payment",
     },
-    {
-      title: "Provayder",
-      dataIndex: "provider",
-      key: "provayder",
-      render: (text, obj) => <div className="text-[#b8860b]">{text}</div>,
-    },
+   
     {
       title: "Statusu",
       dataIndex: "status",
@@ -102,6 +98,12 @@ const Index = () => {
         ) : '';
       },
     },
+    {
+        title: "ID",
+        dataIndex: "id",
+        key: "provayder",
+        render: (text, obj) => <div className="text-[#b8860b]">{text}</div>,
+      },
   ];
 
   useEffect(() => {
@@ -110,7 +112,7 @@ const Index = () => {
 
   return (
     <>
-      <Head title={'Depozitlər'} handleSearch={handleSearch} count={count} select search handleStatusChange={handleStatusChange}/>
+      <Head title={'Balans'} handleSearch={handleSearch} count={count} select search handleStatusChange={handleStatusChange}/>
       <Table size="medium" columns={columns} dataSource={tableView} onRow={(record) => {
           return {
             onClick: () => handleOrderDetail(record), 

@@ -14,15 +14,7 @@ const Head = ({ search, title, count, select, added, handleSearch, handleStatusC
         </Typography>
       </Col>
       <Col span={11} className="flex justify-end items-center gap-5">
-        {search && (
-          <Search
-            placeholder="Axtarış"
-            onChange={handleSearch}
-            style={{
-              width: 200,
-            }}
-          />
-        )}
+       
         {select && (
           <Select
             placeholder="Status seçin"
@@ -46,6 +38,15 @@ const Head = ({ search, title, count, select, added, handleSearch, handleStatusC
                 label: "REJECTED",
               },
             ]}
+          />
+        )}
+         {search && (
+          <Search
+            placeholder="Axtarış"
+            onChange={handleSearch}
+            style={{
+              width: 200,
+            }}
           />
         )}
         {added && (

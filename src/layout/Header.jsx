@@ -5,7 +5,7 @@ import style from "./style.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosInstace";
 import { useSelector } from "react-redux";
-import { UserOutlined } from "@ant-design/icons";
+import { IdcardOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
 
 const HeaderComp = () => {
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const HeaderComp = () => {
     admins: "Adminlər",
     live_support: "Canlı Dəstək",
     profile: "Hesabım",
+    balance: "Balans",
     extracts: "Çıxarışlar",
   };
 
@@ -51,8 +52,9 @@ const HeaderComp = () => {
 
   const content = (
     <div className={style.user_dropdown}>
-      <Link to="/profile">Hesabım</Link>
-      <Link onClick={handleLogout}>Çıxış et</Link>
+      <Link to="/profile"> <UserOutlined /> Hesabım</Link>
+      <Link to="/admins"><IdcardOutlined /> Adminlər</Link>
+      <Link onClick={handleLogout}><LogoutOutlined /> Çıxış et</Link>
     </div>
   );
 
@@ -63,7 +65,7 @@ const HeaderComp = () => {
           {activePageTranslated}
         </Col>
         <Col span={12} className="account">
-          <Popover placement="leftBottom" content={content} className="flex items-center gap-2 text-[#B8860B]">
+          <Popover placement="bottom" content={content} className="flex  items-center gap-2 text-[#B8860B]">
             {user?.avatarURL ? (
               <Image
                 src={user?.avatarURL}

@@ -159,7 +159,7 @@ const Detail = ({ uuid, open, setOpen }) => {
             <div className={style.user_info_boxs}>
               <div className={style.user_info_box}>
                 <h4>Balans</h4>
-                <p>bos</p>
+                <p>{user?.currentBalance}</p>
               </div>
               <div className={style.user_info_box}>
                 <h4>Bonus</h4>
@@ -171,15 +171,15 @@ const Detail = ({ uuid, open, setOpen }) => {
         <Row className={style.user_info_footer}>
           <Col className={style.box_card}>
             <h4>Bütün Depozitlər</h4>
-            <p>bos</p>
+            <p>{user?.totalDeposit}</p>
           </Col>
           <Col className={style.box_card}>
             <h4>Bütün Çıxarışlar</h4>
-            <p>bos</p>
+            <p>{user?.totalWithdraw}</p>
           </Col>
           <Col className={style.box_card}>
             <h4>Çıxarış Qalıqları</h4>
-            <p>bos</p>
+            <p>{user?.totalWithdrawResidual}</p>
           </Col>
         </Row>
       </Modal>
