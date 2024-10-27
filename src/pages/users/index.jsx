@@ -51,39 +51,7 @@ const Index = () => {
     setUsers(response.data.users);
     setCount(response.data.total);
   };
-// <<<<<<< main
-
  
-// =======
-
-//   const deleteUser = async (id) => {
-//     {
-//       try {
-//         const response = await axiosInstance.delete(`/api/users/${id}`);
-
-//         window.location.reload();
-//       } catch (error) {}
-//     }
-//   };
-
-//   const handleOk = async () => {
-//     if (userId) {
-//       deleteUser(userId);
-//     }
-//   };
-// >>>>>>> main
-
-  const handleDeleteModal = (id) => {
-    setUserId(id);
-    setIsModalOpen(true);
-// <<<<<<< main
-// =======
-//   };
-
-//   const handleCancel = () => {
-//     setIsModalOpen(false);
-// >>>>>>> main
-  };
 
   const handleUserDetail = (obj) => {
     setUuid(obj.id);
@@ -170,15 +138,10 @@ const Index = () => {
     // },
   ];
 
-//   useEffect(() => {
-//     getUsersList();
-// <<<<<<< main
-//   }, [search]);
+  useEffect(() => {
+    getUsersList();
+  }, [search]);
 
-// =======
-//   }, []);
-  
-// >>>>>>> main
   return (
     <div>
       <Head

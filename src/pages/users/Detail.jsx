@@ -32,6 +32,8 @@ const Detail = ({ uuid, open, setOpen }) => {
       try {
         const response = await axiosInstance.delete(`/api/users/${uuid}`);
         message.success("Click on Yes");
+
+        console.log('sdcscdvdfv', uuid);
         window.location.reload();
       } catch (error) {}
     }
@@ -41,7 +43,7 @@ const Detail = ({ uuid, open, setOpen }) => {
     const date = new Date(dateString);
     const formattedDate = date.toLocaleDateString("en-GB", {
       day: "2-digit",
-      month: "short", // Oct gibi ay ismi verir
+      month: "short", 
     });
     const formattedTime = date.toLocaleTimeString("en-GB", {
       hour: "2-digit",
