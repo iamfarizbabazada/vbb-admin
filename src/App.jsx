@@ -14,7 +14,7 @@ const LayoutWrapper = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
 
-  const isAuthPage = location.pathname === "/";
+  const isAuthPage = location.pathname === "/login";
 
   return (
     <Layout>

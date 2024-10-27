@@ -1,6 +1,6 @@
 // ProfilePage.scss
 .profile_container {
-  max-width: 70%;
+  max-width: 300px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -9,8 +9,24 @@
 }
 
 .avatar_section {
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin: 20px auto;
+  display: flex;
+  width: 100px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .img_upload {
+    position: absolute;
+    bottom: 0px;
+  }
+
+  .profil_img_delete_btn{
+    position: absolute;
+    top: 0px !important;
+    right: 0px;
+  }
 
   .ant-avatar {
     background-color: red;
@@ -19,17 +35,44 @@
   .ant-btn {
     margin: 0 5px;
   }
+
+  .img_upload_btn{
+    background-color: #B8860B;
+    color: white;
+    width: 100%;
+  }
 }
 
 .profile_form {
   .ant-form-item {
     margin-bottom: 15px;
   }
-}
-.saveBtn{
-    background-color: #B8860B;
+
+  .saveBtn {
+    width: 100%;
+  }
+
 }
 
-.saveBtn:hover{
-    background-color: #b99539;
+.profile_form_password{
+
+
+  .saveBtn {
+    width: 100%;
+  }
+}
+
+.form_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0px;
+  gap: 10px;
+
+  span{
+    width: 60px;
+    height: 1px;
+    background-color: #c4c4c4;
+  }
+
 }

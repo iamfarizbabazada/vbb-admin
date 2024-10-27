@@ -1,0 +1,39 @@
+.insert_container{
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.avatar_section {
+    margin: 20px auto;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  
+    .img_upload {
+      position: absolute;
+      bottom: -10px;
+    }
+  
+    .profil_img_delete_btn{
+      position: absolute;
+      top: 0px !important;
+      right: 0px;
+    }
+  
+    .ant-avatar {
+      background-color: red;
+    }
+  
+    .ant-btn {
+      margin: 0 5px;
+    }
+  
+    .img_upload_btn{
+      background-color: #B8860B;
+      color: white;
+    }
+  }

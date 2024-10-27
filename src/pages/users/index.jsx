@@ -9,6 +9,7 @@ import {
   Popconfirm,
   Popover,
   Row,
+  Table,
   Tooltip,
   Typography,
 } from "antd";
@@ -20,111 +21,185 @@ import {
 } from "@ant-design/icons";
 import style from "./style.module.scss";
 import axiosInstance from "../../api/axiosInstace";
+import Search from "antd/es/input/Search";
+import UiCard from "../../components/commonds/UiCard";
+import Head from "../../components/commonds/Head";
+import Detail from "./Detail";
 
 const Index = () => {
   const [users, setUsers] = useState([]);
   const [count, setCount] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userId, setUserId] = useState();
+  const [uuid, setUuid] = useState();
+  const [openModal, setOpenModal] = useState(false);
+  const [search, setSearch] = useState();
+  const params = {};
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    console.log("search", search);
+  };
+
+  if (search) {
+    params.name = search;
+  }
   const getUsersList = async () => {
-    const response = await axiosInstance.get("api/users");
+    const response = await axiosInstance.get("api/users", {
+      params,
+    });
     setUsers(response.data.users);
     setCount(response.data.total);
   };
+// <<<<<<< main
 
-  const deleteUser = async (id) => {
-    {
-      try {
-        const response = await axiosInstance.delete(`/api/users/${id}`);
+ 
+// =======
 
-        window.location.reload();
-      } catch (error) {}
-    }
-  };
+//   const deleteUser = async (id) => {
+//     {
+//       try {
+//         const response = await axiosInstance.delete(`/api/users/${id}`);
 
-  const handleOk = async () => {
-    if (userId) {
-      deleteUser(userId);
-    }
-  };
+//         window.location.reload();
+//       } catch (error) {}
+//     }
+//   };
+
+//   const handleOk = async () => {
+//     if (userId) {
+//       deleteUser(userId);
+//     }
+//   };
+// >>>>>>> main
 
   const handleDeleteModal = (id) => {
     setUserId(id);
     setIsModalOpen(true);
+// <<<<<<< main
+// =======
+//   };
+
+//   const handleCancel = () => {
+//     setIsModalOpen(false);
+// >>>>>>> main
   };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
+  const handleUserDetail = (obj) => {
+    setUuid(obj.id);
+    setOpenModal(true);
   };
 
-  useEffect(() => {
-    getUsersList();
-  }, []);
+
+  const columns = [
+    {
+      title: "№",
+      dataIndex: ["user", "name"],
+      key: "name",
+      render: (text, obj, index) => <a>{users.length - index}</a>,
+    },
+    {
+      title: "Tarix",
+      dataIndex: ["createdAt"],
+      key: "createdAt",
+      render: (createdAt) => {
+        const date = new Date(createdAt);
+        const formattedDate = date.toLocaleDateString("az-Latn-AZ", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric",
+        });
+        const formattedTime = date.toLocaleTimeString("az-Latn-AZ", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+        return `${formattedDate} - ${formattedTime}`;
+      },
+    },
+    {
+      title: "Ad Soyad",
+      dataIndex: ["name"],
+      key: "name",
+      render: (text) => <a>{text}</a>,
+    },
+    {
+      title: "Günün Bonusu",
+      dataIndex: ["bonus"],
+      key: "name",
+      render: (text) => <a>{text} ₼</a>,
+    },
+    {
+      title: "Cari Balans",
+      dataIndex: "currentBalance",
+      key: "price",
+      render: (text, obj) => <div>{text} ₼</div>,
+    },
+    {
+      title: "Bütün Depozitlər",
+      dataIndex: "totalDeposit",
+      key: "payment",
+      render: (text, obj) => <div >{text} ₼</div>,
+    },
+    {
+      title: "Bütün Çıxarışlar",
+      dataIndex: "totalWithdraw",
+      key: "provayder",
+      render: (text, obj) => <div >{text} ₼</div>,
+    },
+    {
+      title: "Çıxarış Qalıqları Cəmi",
+      dataIndex: "totalWithdrawResidual",
+      key: "provayder",
+      render: (text, obj) => <div >{text} ₼</div>,
+    },
+    // {
+    //   title: "Statusu",
+    //   dataIndex: "status",
+    //   key: "status",
+    //   render: (text, obj) => {
+    //     return obj.status === "PENDING" ? (
+    //       <Tag color={"yellow"}>GÖZLƏYİR</Tag>
+    //     ) : obj.status === "COMPLETED" ? (
+    //       <Tag color={"green"}>TƏSDİQLƏNDİ</Tag>
+    //     ) : obj.status === "REJECTED" ? (
+    //       <Tag color={"red"}>LƏĞV EDİLDİ</Tag>
+    //     ) : (
+    //       ""
+    //     );
+    //   },
+    // },
+  ];
+
+//   useEffect(() => {
+//     getUsersList();
+// <<<<<<< main
+//   }, [search]);
+
+// =======
+//   }, []);
   
+// >>>>>>> main
   return (
     <div>
-      <Row className={style.count_section}>
-        <Typography level={2} style={{ margin: "0px" }}>
-        İstifadəçi sayı: <Badge count={count} showZero color="#B8860B" />
-        </Typography>
-      </Row>
-      <Row className={style.users} gutter={12}>
-        {users?.map((user) => (
-          <Col span={6}>
-            <Card style={{ width: "100%", height: '100px', marginBottom: '10px' }}>
-              <Row gutter={12} className={style.user_content}>
-                <div className={"flex items-center"}>
-                  <Col>
-                    {user.avatarURL ? (
-                      <Image
-                        width={50}
-                        className={style.user_img}
-                        preview={true}
-                        src={user.avatarURL}
-                      />
-                    ) : (
-                      <Avatar size={50} icon={<UserOutlined />} />
-                    )}
-                  </Col>
-                  <Col>
-                    <Tooltip title={user.name}>
-                      <h2 className={style.truncate}>
-                        {user.name.length > 24
-                          ? `${user.name.slice(0, 24)}...`
-                          : user.name}
-                      </h2>
-                    </Tooltip>
-                    <Tooltip title={user.email}>
-                      <p className={style.truncate}>
-                        {" "}
-                        {user.email.length > 24
-                          ? `${user.email.slice(0, 24)}...`
-                          : user.email}
-                      </p>
-                    </Tooltip>
-                  </Col>
-                </div>
-                <Col className={style.user_edit}>
-                  <UserDeleteOutlined
-                    onClick={() => handleDeleteModal(user.id)}
-                    style={{ fontSize: "20px", color: "#e37f7f" }}
-                  />
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      <Head
+        title={"İstifadəçilər"}
+        count={count}
+        handleSearch={handleSearch}
+        search
+      />
 
-      <Modal
-        title="İstifadəçini silməkdən əminmisiniz?"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        okText="Bəli"
-        cancelText="Xeyir"
-      ></Modal>
+        <Table
+          size="medium"
+          columns={columns}
+          dataSource={users}
+          onRow={(record) => {
+            return {
+              onClick: () => handleUserDetail(record),
+            };
+          }}
+        />
+
+      <Detail uuid={uuid} open={openModal}  setOpen={setOpenModal}/>
     </div>
   );
 };

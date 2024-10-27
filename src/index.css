@@ -3,10 +3,71 @@
 @tailwind utilities;
 
 
+/* PAGINATION */
+
 .ant-pagination-item-active{
     border-color: #B8860B !important;
 }
 
 .ant-pagination-item-active a{
     color: #B8860B !important;
+}
+
+.ant-pagination-prev{
+    background-color: white;
+}
+
+.ant-pagination-next{
+    background-color: white;
+}
+
+
+/* BUTTONS */
+
+/* .ant-btn-variant-solid{
+    background-color: #333;
+}
+.ant-btn-variant-solid:hover{
+    background-color: #000 !important;
+}
+
+.ant-btn-variant-outlined:hover{
+    border-color: #000 !important;
+    color: #000  !important;
+}
+
+.ant-btn-default{
+    background-color: #333;
+    color: white;
+} */
+
+.ant-input-group-addon button{
+    background-color: white !important;
+    border-top-right-radius: 2px !important;
+    border-bottom-right-radius: 2px !important;
+}
+
+
+/* SELECT */
+
+.ant-input{
+    border-radius: 2px !important;
+
+}
+
+.ant-select-selector{
+    border-radius: 2px !important;
+    text-align: center;
+}
+
+
+/* Modal */
+
+.ant-modal .ant-modal-content{
+    padding: 0px;
+    
+}
+
+.ant-modal-title{
+    padding: 16px 24px;
 }

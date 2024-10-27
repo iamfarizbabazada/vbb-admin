@@ -127,7 +127,10 @@
 .chat_footer {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+}
+
+.message_input{
+    width: 90%;
 }
 
 .send_btn {

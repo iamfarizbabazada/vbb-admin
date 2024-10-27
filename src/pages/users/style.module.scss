@@ -1,46 +1,101 @@
-.users {
-  display: flex;
-  align-items: center;
+.user_info{
+    display: flex;
+    gap: 10px;
+    padding: 20px 0px;
+    background: #fff;
+    border-radius: 8px;
+    margin: 35px 35px;
 
-  .user_content {
+    padding: 20px;
+
+    h2{
+        font-size: 24px;
+        font-weight: medium;
+    }
+
+    .date{
+        font-size: 12px;
+        color: #999999;
+    }
+
+    .left{
+        min-width: 150px;
+        min-height: 150px;
+    }
+
+    .right{
+        width: 100%;
+    }
+
+}
+
+.user_info_boxs{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: #F0F2F5;
+    gap: 15px;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 10px;
+
+    .user_info_box{
+        h4{
+            color: #848484;
+        }
+
+        p{
+            font-weight: 600;
+        }
+    }
+}
+
+.boxs_top{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
 
-    .truncate {
-      max-width: 300px;
-      white-space: nowrap; 
-      overflow: hidden; 
-      text-overflow: ellipsis; 
-      cursor: pointer; 
-    }
+    padding: 20px;
+    border-radius: 4px;
 
-    .user_img {
-      border-radius: 7px;
-    }
-
-    h2 {
-      color: #b8860b;
-    }
-
-    p {
-      font-size: 12px;
-      color: gray;
-    }
-  }
-
-  .user_edit {
-    cursor: pointer;
-    display: flex;
-    align-items: end;
-    justify-content: end;
-  }
 }
 
-.count_section {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 
-  margin-bottom: 24px;
+.user_info_footer{
+    background-color: #fff;
+    border-radius: 8px;
+    margin: 35px 35px;
+    padding: 15px;
+
+    display: flex;
+    align-items: center;
+
+    .box_card{
+        border-right: 1px solid #e6e5e5;
+        padding: 0px 5px;
+
+        h4{
+            color: #848484;
+        }
+    }
+
+    .box_card:last-child{
+        border: none;
+    }
+
+}
+
+.modal_footer{
+    padding: 35px 35px;
+    padding-top: 0px;
+}
+
+.delete_btn{
+    color: red;
+    width: 100%;
+}
+
+.save_btn{
+    width: 100%;
 }

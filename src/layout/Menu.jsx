@@ -6,6 +6,8 @@ import Support from "../components/icons/Support";
 import { Button, Flex, Menu } from "antd";
 import Logo from '../components/icons/Logo';
 import style from './style.module.scss';
+import { ProfileOutlined, WalletOutlined } from "@ant-design/icons";
+import Extracts from "../components/icons/Extracts";
 
 const MenuComp = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -23,15 +25,26 @@ const MenuComp = () => {
 
  const items = [
   {
-    key: "/users",
-    icon: <Users color={location.pathname === "/users" ? '#B8860B' : '#0000008a'} />,
-    label: <span style={{marginLeft: '10px', color: location.pathname === "/users" ? "#B8860B" : "#0000008a" }}>İstifadəçilər</span>,
+    key: "/balance",
+    icon: <WalletOutlined style={location.pathname === "/balance" ? {color: '#B8860B', fontSize: '20px'} : {color:'#0000008a', fontSize: '20px'}  }/>,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/balance" ? "#B8860B" : "#0000008a" }}>Balans</span>,
   },
   {
     key: "/orders",
     icon: <Notification color={location.pathname === "/orders" ? '#B8860B' : '#0000008a'} />,
-    label: <span style={{marginLeft: '10px', color: location.pathname === "/orders" ? "#B8860B" : "#0000008a" }}>Sifarişlər</span>,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/orders" ? "#B8860B" : "#0000008a" }}>Depozitlər</span>,
   },
+  {
+    key: "/extracts",
+    icon: <Extracts color={location.pathname === "/extracts" ? '#B8860B' : '#0000008a'} />,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/extracts" ? "#B8860B" : "#0000008a" }}>Çıxarışlar</span>,
+  },
+  {
+    key: "/users",
+    icon: <Users color={location.pathname === "/users" ? '#B8860B' : '#0000008a'} />,
+    label: <span style={{marginLeft: '10px', color: location.pathname === "/users" ? "#B8860B" : "#0000008a" }}>İstifadəçilər</span>,
+  },
+  
   {
     key: "/live_support",
     icon: <Support color={location.pathname === "/live_support" ? '#B8860B' : '#0000008a'} />,

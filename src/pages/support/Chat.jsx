@@ -123,13 +123,14 @@ const Chat = ({ userId, receiverId, users, userData }) => {
           })}
       </div>
 
-      <div className={style.chat_footer} gutter={12}>
+      <Row className={style.chat_footer} >
           <Input
             value={message}
             size="large"
             onChange={(e) => setMessage(e.target.value)}
             onPressEnter={sendMessage}
             placeholder="Yazmağa başlayın.."
+            className={style.message_input}
           />
           <Button
             type="primary"
@@ -137,7 +138,7 @@ const Chat = ({ userId, receiverId, users, userData }) => {
             onClick={sendMessage}
             icon={<SendOutlined style={{ fontSize: "26px" }} />}
           ></Button>
-      </div>
+      </Row>
     </div>
   );
 };
